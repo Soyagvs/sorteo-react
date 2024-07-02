@@ -1,12 +1,11 @@
-import PrimerComponente from "./components/PrimerComponente"
+import { Home } from "./pages/Home"
 
 const App = () => {
   return (
     <>
-      <h1>Hola , vengo desde App</h1>
-      <PrimerComponente/>
+      <Home />
     </>
   )
-} 
+}
 
 export default App
