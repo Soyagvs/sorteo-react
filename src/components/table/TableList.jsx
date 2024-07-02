@@ -85,9 +85,9 @@ export const TableList = () => {
                 </button>
             </div>
             <table className="flex flex-col justify-center items-center mt-20 gap-5">
-                <thead className="border bg-slate-200 rounded-xl flex justify-center items-center">
-                    <tr className="flex flex-row gap-10 text-black px-5 justify-center items-center">
-                        <th className="text-2xl">Lista de participantes:</th>
+                <thead className="border bg-slate-400 rounded-xl flex justify-center items-center w-[300px]">
+                    <tr className="flex flex-row gap-10 text-black justify-center items-center">
+                        <th className="text-2xl">Lista de participantes</th>
                     </tr>
                 </thead>
                 <tbody>
