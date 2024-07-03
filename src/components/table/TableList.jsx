@@ -92,11 +92,12 @@ export const TableList = () => {
                 </thead>
                 <tbody>
                     {participants.map((participant) => (
-                        <tr key={participant.id} className="flex flex-row gap-10 justify-start items-start p-1 border border-slate-500 rounded-xl">
-                            <td>{participant.id}</td>
-                            <td>
+                        <tr key={participant.id} className="flex flex-row gap-5 justify-center items-center p-1 border border-slate-500 rounded-xl">
+                            <td className='text-blue-300'>{participant.id}</td>
+                            <td className='text-white'>
                                 {editId === participant.id ? (
                                     <input
+                                        className='text-white'
                                         type="text"
                                         value={editName}
                                         onChange={(e) => setEditName(e.target.value)}
