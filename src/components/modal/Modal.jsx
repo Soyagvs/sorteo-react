@@ -1,9 +1,7 @@
-import React from 'react';
-
-const Modal = ({ closeModal, children }) => {
+export const Modal = ({ closeModal, children }) => {
     return (
-        <div className="absolute inset-0 z-50 flex items-center justify-center">
-            <div className="">
+        <div className="absolute inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ease-in-out opacity-100">
+            <div className="transform transition-transform duration-300 ease-in-out scale-100">
                 {/* Contenido del modal */}
                 <div className="relative flex flex-col bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none justify-center items-center w-[300px]">
                     <div className="flex items-start justify-between p-5 border-b border-solid rounded-t gap-3">
@@ -28,5 +26,3 @@ const Modal = ({ closeModal, children }) => {
         </div>
     );
 };
-
-export default Modal;

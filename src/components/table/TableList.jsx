@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
+import Confetti from 'react-confetti';
 import Loader from '../loading/Loader'; // Asegúrate de importar tu componente Loader
-import Modal from '../modal/Modal'; // Asegúrate de importar tu componente Modal
+import { Modal } from '../modal/Modal'; // Asegúrate de importar tu componente Modal
 
 export const TableList = () => {
     const [participants, setParticipants] = useState(() => {
-        // Intentar cargar los participantes desde localStorage al inicializar el estado
         const storedParticipants = localStorage.getItem('participants');
         return storedParticipants ? JSON.parse(storedParticipants) : [];
     });
@@ -13,12 +14,22 @@ export const TableList = () => {
     const [editName, setEditName] = useState('');
     const [winner, setWinner] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
+    const [showModal, setShowModal] = useState(false);
+
 
     useEffect(() => {
-        // Guardar participantes en localStorage cada vez que cambie el estado de participants
         localStorage.setItem('participants', JSON.stringify(participants));
     }, [participants]);
+
+    useEffect(() => {
+        // Desplazarse hacia arriba cuando el ganador se muestra y la carga ha terminado
+        if (!loading && winner) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    }, [loading, winner]);
 
     const handleAddParticipant = () => {
         if (name.trim() !== '') {
@@ -66,6 +77,7 @@ export const TableList = () => {
 
     const closeModal = () => {
         setShowModal(false);
+        setWinner(null); // Restablecer ganador cuando se cierra el modal
     };
 
     return (
@@ -97,7 +109,7 @@ export const TableList = () => {
                             <td className='text-white'>
                                 {editId === participant.id ? (
                                     <input
-                                        className='text-white'
+                                        className='text-black'
                                         type="text"
                                         value={editName}
                                         onChange={(e) => setEditName(e.target.value)}
@@ -149,6 +161,8 @@ export const TableList = () => {
                             <Loader />
                         ) : winner ? (
                             <>
+                                {/* Efecto de confeti cuando se muestra el ganador */}
+                                <Confetti className='-ml-[700px] w-screen -mt-80 '/>
                                 <h2 className="text-2xl">¡Ganador!</h2>
                                 <p className="text-xl">{`ID: ${winner.id}, Nombre: ${winner.name}`}</p>
                                 <button onClick={closeModal} className="bg-purple-500 text-white rounded-xl h-10 w-24 mt-3">
